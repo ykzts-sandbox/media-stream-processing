@@ -26,7 +26,10 @@ async function main() {
     context.fillStyle = 'rgb(0, 0, 0)';
     context.fillRect(150, 125, canvas.width - 300, 50);
     const bufferStream = canvas.captureStream();
-    afterStream.addTrack(bufferStream.getVideoTracks()[0]);
+    const tracks = bufferStream.getVideoTracks();
+    for (const track of tracks) {
+      afterStream.addTrack(track);
+    }
     requestAnimationFrame(process);
   };
   process();
